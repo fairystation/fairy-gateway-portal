@@ -8,13 +8,17 @@
 }
 
 .App-header {
-  background-color: #222;
+  background-color: rgb(79, 78, 78);
+  opacity: 80%;
   height: 150px;
   padding: 20px;
   color: white;
 }
 
 .App-title {
+  font-size: 1.5em;
+}
+.App-header-title {
   font-size: 1.5em;
 }
 

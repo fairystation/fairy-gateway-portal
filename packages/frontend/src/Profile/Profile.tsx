@@ -5,6 +5,7 @@ import React, { useState, useEffect } from 'react';
 import Blockies from 'react-blockies';
 
 import { Auth } from '../types';
+import Web3 from 'web3';
 
 interface Props {
 	auth: Auth;
@@ -56,6 +57,17 @@ export const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
 		setState({ ...state, username: value });
 	};
 
+	const handleConnectToService = async () => {
+		const web3 = new Web3('http://localhost:8545');
+		const contractAddress = '0xdeA7ED7764b919139A65a8A32FFFDC280F948e61';
+		const contract = await import('./apps.json') as any;
+		const myContract = new web3.eth.Contract(contract.abi, contractAddress);
+		const result = await myContract.methods.mint('ass').call();
+		console.log(result);
+		window.alert(JSON.stringify(result));
+		return result;
+	};
+
 	const handleSubmit = () => {
 		const { accessToken } = auth;
 		const { user, username } = state;
@@ -101,16 +113,11 @@ export const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
 				Logged in as <Blockies seed={publicAddress} />
 			</p>
 			<div>
-				My username is {username ? <pre>{username}</pre> : 'not set.'}{' '}
-				My publicAddress is <pre>{publicAddress}</pre>
+				My public address is: <pre>{publicAddress}</pre>
 			</div>
-			<div>
-				<label htmlFor="username">Change username: </label>
-				<input name="username" onChange={handleChange} />
-				<button disabled={loading} onClick={handleSubmit}>
-					Submit
-				</button>
-			</div>
+			<p>
+				<button onClick={handleConnectToService}>Connect to service</button>
+			</p> 
 			<p>
 				<button onClick={onLoggedOut}>Logout</button>
 			</p>
