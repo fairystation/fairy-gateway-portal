@@ -5,3 +5,24 @@
 .Profile {
   color: white;
 }
+.Food-image {
+  animation: simple 3s forwards ease;
+}
+
+@keyframes simple {
+50% {
+  -webkit-transform: translateX(300px);
+  -moz-transform: translateX(300px);
+  -ms-transform: translateX(300px);
+  -o-transform: translateX(300px);
+  transform: translateX(300px);
+}
+100% {
+  -webkit-transform: translateX(300px) translateY(500px);
+  -moz-transform: translateX(300px) translateY(500px);
+  -ms-transform: translateX(300px) translateY(500px);
+  -o-transform: translateX(300px) translateY(500px);
+  transform: translateX(300px) translateY(500px);
+  
+}
+}

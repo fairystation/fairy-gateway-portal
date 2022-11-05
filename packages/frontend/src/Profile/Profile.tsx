@@ -3,7 +3,7 @@ import './Profile.css';
 import jwtDecode from 'jwt-decode';
 import React, { useState, useEffect } from 'react';
 import Blockies from 'react-blockies';
-
+import food from './food.png'
 import { Auth } from '../types';
 import Web3 from 'web3';
 
@@ -19,6 +19,7 @@ interface State {
 		username: string;
 	};
 	username: string;
+	fake: boolean;
 }
 
 interface JwtDecoded {
@@ -33,6 +34,7 @@ export const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
 		loading: false,
 		user: undefined,
 		username: '',
+		fake: false
 	});
 
 	useEffect(() => {
@@ -64,7 +66,7 @@ export const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
 		const myContract = new web3.eth.Contract(contract.abi, contractAddress);
 		const result = await myContract.methods.mint('ass').call();
 		console.log(result);
-		window.alert(JSON.stringify(result));
+		setState({ ...state, fake: true });
 		return result;
 	};
 
@@ -116,7 +118,14 @@ export const Profile = ({ auth, onLoggedOut }: Props): JSX.Element => {
 				My public address is: <pre>{publicAddress}</pre>
 			</div>
 			<p>
+				{ 
+				state.fake ? 
+				<p> <h2>Your food is on the way!</h2>
+				<br />
+				<img src={food} alt="Tasty food" width="30%" className="Food-image" /></p>
+				:
 				<button onClick={handleConnectToService}>Connect to service</button>
+				}
 			</p> 
 			<p>
 				<button onClick={onLoggedOut}>Logout</button>
