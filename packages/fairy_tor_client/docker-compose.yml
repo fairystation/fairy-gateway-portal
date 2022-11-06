@@ -1,0 +1,10 @@
+version: '3'
+services:
+    fairy-tor-build:
+        build: ./
+        image: gotor-fairy/arm
+        volumes:
+            - './:/app'
+        environment:
+            CGO_CFLAGS: "-w"
+        command: ["go", "build" , "-o", "/app/fairy-tor-node" ]

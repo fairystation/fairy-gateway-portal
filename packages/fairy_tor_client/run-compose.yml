@@ -1,0 +1,12 @@
+version: '3'
+services:
+    fairy-tor-run:
+        build: ./
+        image: gotor-tengo/arm
+        volumes:
+            - './:/app'
+        ports:
+            - '5566:5566'
+            - '5066:5066'
+        environment:
+            CGO_CFLAGS: "-w"

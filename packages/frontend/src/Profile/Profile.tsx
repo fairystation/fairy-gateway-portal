@@ -1,3 +1,4 @@
+/* eslint no-use-before-define: 0 */ 
 import './Profile.css';
 
 import jwtDecode from 'jwt-decode';
