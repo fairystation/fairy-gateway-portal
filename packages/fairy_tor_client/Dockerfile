@@ -7,6 +7,8 @@ RUN mkdir /app
 # Set working directory
 WORKDIR /app
  
+ENV GO111MODULE=off
+
 # Run command as described:
 # go build will build an executable file named server in the current directory
 RUN apk add git; \
