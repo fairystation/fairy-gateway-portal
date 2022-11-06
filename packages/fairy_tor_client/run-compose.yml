@@ -8,5 +8,6 @@ services:
         ports:
             - '5566:5566'
             - '5066:5066'
+            - '5866:5866'
         environment:
             CGO_CFLAGS: "-w"

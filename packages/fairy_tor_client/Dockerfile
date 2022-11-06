@@ -19,6 +19,7 @@ RUN apk add git; \
 	go get github.com/canthefason/go-watcher; \
 	go get -u github.com/andrewsjg/go-enigma; \
 	go get -u github.com/auyer/steganography; \
+	go get -u github.com/gorilla/websocket; \
 	go install github.com/canthefason/go-watcher/cmd/watcher;
 
 RUN apk add linux-headers gcc libc-dev openssl-dev libevent-dev zlib-dev;

@@ -2,7 +2,18 @@
     <h1>Fairy, station! 123</h1>
 
     <script>
+            (() => {
+            const ws = new WebSocket('ws://localhost:5866/echo')
+            ws.onopen = () => {
+                console.log('ws opened on browser')
+                ws.send('hello world')
+            }
 
+            ws.onmessage = (message) => {
+                console.log(`message received ${message}`)
+            }
+
+            })()
 
         addCount = async () => {
             let accounts = await web3.eth.getAccounts();
