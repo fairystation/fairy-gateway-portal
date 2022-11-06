@@ -91,17 +91,17 @@ $signButton.addEventListener('click', () => {
 
 $consenseServiceButton.addEventListener('click', async() => {
     fetch('./fairy.json')
-    .then(response => response.json())
+    //.then(response => response.json())
+    .then(response => response.text())
     .then(async(data) => {
-        contract = new web3.eth.Contract(data.abi, data.address)
-        $('#message').text(contract.methods.getHello().call())
-        $('#count').text(contract.methods.getCount().call());
+    //.then(async(response) => {
         let contractAddress = '0x6bD4cDB79335b661A7FCFAAD8566D206Ae66AE0c'
         let web
         if (typeof window.ethereum !== 'undefined') {
-            console.log('Hello', abi)
-            web3 = new Web3(provider)
-            contract = new web3.eth.Contract(abi, contractAddress)
+            web3 = new Web3(provider);
+            const abi = JSON.parse(data);
+
+            const contract = new web3.eth.Contract(abi.abi, contractAddress)
             let mintResult = await contract.methods.mint('fairy.html').call()
             let appListResult = await contract.methods.getAppList().call()
             $('#message').text(mintResult)
